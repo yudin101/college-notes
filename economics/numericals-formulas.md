@@ -135,3 +135,38 @@ P and C (TC and C are the same thing) will be given. Most probably, both in the 
 - **`Profit`** = TR - TC
 
 ---
+
+## Budget line
+
+Things that will be given:
+
+- Income (M)
+- Price of X ($P_x$)
+- Price of Y ($P_y$)
+
+### Equation
+
+$$
+\frac{P_x \times X}{P_y \times Y} = M
+$$
+
+### For diagrams
+
+- X intercept:
+  - $P_x \times X$ = M
+  - Y = 0
+- Y intercept:
+  - $P_y \times Y$ = M
+  - X = 0
+
+### Finding Slope
+
+- Slope: $\frac{-P_x}{P_y}$
+
+### Spending equally on both, how many units bought?
+
+- Money divided for each (D) = $\frac{M}{2}$
+- For X: $\frac{D}{P_x}$
+- For Y: $\frac{D}{P_y}$
+
+---
