@@ -154,16 +154,16 @@ Things that will be given:
 ### Equation
 
 $$
-\frac{P_x \times X}{P_y \times Y} = M
+P_x \cdot X + P_y \cdot Y = M
 $$
 
 ### For diagrams
 
 - X intercept:
-  - $P_x \times X$ = M
+  - $P_x \cdot X$ = M
   - Y = 0
 - Y intercept:
-  - $P_y \times Y$ = M
+  - $P_y \cdot Y$ = M
   - X = 0
 
 ### Finding Slope
