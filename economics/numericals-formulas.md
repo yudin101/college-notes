@@ -106,18 +106,24 @@ $$
 
 #### Tax on seller / buyer
 
-- Tax imposed on seller = Replace Qs' P with (P - tax)
-- Tax imposed on buyer = Replace Qd' P with (P + tax)
+- Tax imposed on seller = Replace P from $Q_s$ with (P - tax)
+- Tax imposed on buyer = Replace P from $Q_d$ with (P + tax)
 
 #### Subsidy on seller / buyer
 
-- Subsidy on seller = Replace Qs' P with (P + subsidy)
-- Subsidy on buyer = Replace Qd' P with (P - subsidy)
+- Subsidy on seller = Replace P from $Q_s$ with (P + subsidy)
+- Subsidy on buyer = Replace P from $Q_d$ with (P - subsidy)
 
 ### Gains / burdens
 
 - Buyer's gain / burden = price buyer pays now vs old equilibrium price
-- Seller's gain / burden = price seller receives nw vs old equilibrium price
+- Seller's gain / burden = price seller receives now vs old equilibrium price
+
+### Shortage or Surplus
+
+Check the quantity of demand and supply for a given price
+
+- $Q_s$ > $Q_d$ ? Surplus : Shortage
 
 ---
 
