@@ -135,6 +135,7 @@ P and C (TC and C are the same thing) will be given. Most probably, both in the 
 - **`Marginal Revenue (MR)`** = $\frac{d(TR)}{dQ}$ (derivative)
 - **`Marginal Cost (MC)`** = $\frac{d(TC)}{dQ}$ (derivative)
 - Equate: **`MR = MC`** -> Find Q
+    - _Note: Q is the profit-maximizing output._
 - Put that Q in P's equation from the question and find P's value
 - Find TR; **`TR = P * Q`**
 - Find TC -> Put Q's value in the question's equation
