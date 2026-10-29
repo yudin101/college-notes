@@ -77,11 +77,11 @@ $$
 #### GDP/GDPmp = Consumption + Investment + Government Expenditure + (Export - Import)
 
 - C + I + G + ( X - M)
-- `Consumption` = household consumption, personal consumption, private final consumption
-- `Investment` = {gross domestic capital formation, gross private domestic fixed investment} + {change in stock, change in business inventories, closing stock - opening stock}
-- `Government` Expenditure = government final consumption expenditure, government consumption and investment expenditure
+- **`Consumption`** = household consumption, personal consumption, private final consumption
+- **`Investment`** = {gross domestic capital formation, gross private domestic fixed investment} + {change in stock, change in business inventories, closing stock - opening stock}
+- **`Government Expenditure`** = government final consumption expenditure, government consumption and investment expenditure
+- **`Net exports`** = Export - Import
 - Net exports might be given instead of separate exports and imports. In such case, directly use net exports as exports - imports
-- `Net exports` = Export - Import
 
 #### GNP/GNI/GNPmp = GDP + net factor income from abroad
 
