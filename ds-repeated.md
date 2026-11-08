@@ -449,17 +449,45 @@ The **shortest path problem** is to find a path of least total weight between tw
 
 Graph as read from the scan; verify against your paper. Edges: a-b = 2, a-c = 3, b-d = 5, b-e = 2, c-e = 5, d-e = 1, d-z = 2, e-z = 4.
 
-| Step | Vertex added to S | L(a) | L(b) | L(c) | L(d) | L(e)                 | L(z)  |
-| ---- | ----------------- | ---- | ---- | ---- | ---- | -------------------- | ----- |
-| Init |                   | 0    | ∞    | ∞    | ∞    | ∞                    | ∞     |
-| 1    | a (0)             | 0    | 2    | 3    | ∞    | ∞                    | ∞     |
-| 2    | b (2)             | 0    | 2    | 3    | 7    | 4                    | ∞     |
-| 3    | c (3)             | 0    | 2    | 3    | 7    | 4 (via c would be 8) | ∞     |
-| 4    | e (4)             | 0    | 2    | 3    | 5    | 4                    | 8     |
-| 5    | d (5)             | 0    | 2    | 3    | 5    | 4                    | 7     |
-| 6    | z (7)             |      |      |      |      |                      | **7** |
+**How to read the table:** each cell is written `distance (previous vertex)`. The previous vertex is the one we came from on the best path found so far. A cell changes only when a new route is shorter. Cells in **bold** were updated in that step.
 
-**Shortest path: a → b → e → d → z, length 2 + 2 + 1 + 2 = 7.**
+| Step | Vertex added to S | b         | c         | d         | e         | z         |
+| ---- | ----------------- | --------- | --------- | --------- | --------- | --------- |
+| Init | a (distance 0)    | ∞         | ∞         | ∞         | ∞         | ∞         |
+| 1    | a (0)             | **2 (a)** | **3 (a)** | ∞         | ∞         | ∞         |
+| 2    | b (2)             | 2 (a)     | 3 (a)     | **7 (b)** | **4 (b)** | ∞         |
+| 3    | c (3)             | 2 (a)     | 3 (a)     | 7 (b)     | 4 (b)     | ∞         |
+| 4    | e (4)             | 2 (a)     | 3 (a)     | **5 (e)** | 4 (b)     | **8 (e)** |
+| 5    | d (5)             | 2 (a)     | 3 (a)     | 5 (e)     | 4 (b)     | **7 (d)** |
+| 6    | z (7)             | 2 (a)     | 3 (a)     | 5 (e)     | 4 (b)     | **7 (d)** |
+
+(The row for vertex a is omitted from the columns because a is the start and its distance is always 0.)
+
+**What happened at each step:**
+
+1. **Visit a (0):** its neighbours are b (cost 2) and c (cost 3). So b = 2 via a, c = 3 via a.
+2. **Visit b (2), the smallest unvisited:** its neighbours are d (2 + 5 = 7) and e (2 + 2 = 4). So d = 7 via b, e = 4 via b.
+3. **Visit c (3):** its neighbour e would cost 3 + 5 = 8, which is worse than the current 4. **No change.**
+4. **Visit e (4):** its neighbours are d (4 + 1 = 5, better than 7, so **update d to 5 via e**) and z (4 + 4 = 8, so z = 8 via e).
+5. **Visit d (5):** its neighbour z would cost 5 + 2 = 7, better than 8. **Update z to 7 via d.**
+6. **Visit z (7):** the destination is reached, so stop.
+
+**Tracing the path back from z using the "previous vertex" entries:**
+
+```
+z  was reached from  d     (z = 7 via d)
+d  was reached from  e     (d = 5 via e)
+e  was reached from  b     (e = 4 via b)
+b  was reached from  a     (b = 2 via a)
+```
+
+Reading this backwards: **a → b → e → d → z**.
+
+**Check the length:** a→b = 2, b→e = 2, e→d = 1, d→z = 2, so 2 + 2 + 1 + 2 = **7**.
+
+**Shortest path: a → b → e → d → z, length 7.**
+
+In the exam, show this "distance (previous vertex)" table and the trace-back. The examiner needs to see both the length and the route.
 
 ---
 
