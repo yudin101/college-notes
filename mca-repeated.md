@@ -316,6 +316,62 @@ SAP = Simple-As-Possible computer (Malvino). A teaching architecture.
 
 Each instruction uses 6 T-states: T1-T3 (fetch: address, increment, memory) and T4-T6 (execute).
 
+### SAP-2 components and block diagram
+
+```
+        +------------------- W BUS (8-bit) -------------------------+
+        |     |      |      |     |      |     |     |     |        |
+      [PC]  [MAR]  [Memory [IR]  [A]   [ALU] [TMP] [B]   [C]    [Input ports 1,2]
+     16-bit 16-bit  64K x  8-bit 8-bit  +     8-bit 8-bit 8-bit  [Output ports 3,4]
+                    8, MDR]            Flags                           |
+                      |                  |                       [Binary displays]
+                      +------[Controller-Sequencer]
+                              (variable T-states per instruction)
+```
+
+The diagram is simplified. Redraw it with the W bus and the labelled registers.
+
+| Component                         | Function                                                                                                                           |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Program Counter (PC)**          | 16-bit; holds the address of the next instruction or operand byte; increments after each byte fetched                              |
+| **MAR** (Memory Address Register) | 16-bit; holds the address being read from or written to memory                                                                     |
+| **Memory**                        | 64 KB addressable; in Malvino's design 2K ROM (0000H-07FFH) holds the monitor program and 2K RAM (0800H-0FFFH) holds user programs |
+| **MDR** (Memory Data Register)    | 8-bit; holds the byte going to or coming from memory                                                                               |
+| **Instruction Register (IR)**     | 8-bit; holds the opcode byte only; operand and address bytes are fetched separately                                                |
+| **Controller-Sequencer**          | Generates the control word and timing; the number of T-states depends on the instruction                                           |
+| **Accumulator (A)**               | 8-bit; holds operands and results of ALU operations                                                                                |
+| **ALU**                           | Performs add, subtract, AND, OR, XOR, complement, rotate, increment and decrement                                                  |
+| **TMP register**                  | 8-bit; temporary register holding the second operand for the ALU; bidirectional                                                    |
+| **B and C registers**             | 8-bit general-purpose registers; bidirectional                                                                                     |
+| **Flags (sign, zero)**            | Two flip-flops set by ALU results; used by conditional jumps                                                                       |
+| **Input ports 1 and 2**           | Bring data from outside (keyboard, switches) onto the bus through the accumulator                                                  |
+| **Output ports 3 and 4**          | Hold data sent out from the accumulator; drive the displays                                                                        |
+| **W bus**                         | 8-bit common bus; 16-bit addresses are moved as two bytes                                                                          |
+
+### SAP-2 instruction set
+
+Opcodes match the 8085, and SAP-2 is a subset of the 8085 instruction set. There are about 42 instructions, grouped here by type.
+
+| Group              | Instructions (opcode in hex)                                                                                                  |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Data transfer**  | MOV A,B (78); MOV A,C (79); MOV B,A (47); MOV B,C (41); MOV C,A (4F); MOV C,B (48)                                            |
+| **Immediate load** | MVI A,byte (3E); MVI B,byte (06); MVI C,byte (0E)                                                                             |
+| **Memory**         | LDA addr (3A); STA addr (32)                                                                                                  |
+| **Arithmetic**     | ADD B (80); ADD C (81); SUB B (90); SUB C (91); INR A/B/C (3C/04/0C); DCR A/B/C (3D/05/0D)                                    |
+| **Logic**          | ANA B (A0); ANA C (A1); ORA B (B0); ORA C (B1); XRA B (A8); XRA C (A9); ANI byte (E6); ORI byte (F6); XRI byte (EE); CMA (2F) |
+| **Rotate**         | RAL (17); RAR (1F)                                                                                                            |
+| **Branch**         | JMP addr (C3); JM addr (FA); JZ addr (CA); JNZ addr (C2); CALL addr (CD); RET (C9)                                            |
+| **I/O**            | IN byte (DB); OUT byte (D3)                                                                                                   |
+| **Control**        | NOP (00); HLT (76)                                                                                                            |
+
+Instruction length depends on the type:
+
+- **1 byte:** register instructions (MOV, ADD, SUB, INR, DCR, logic, RAL, RAR, CMA, RET, NOP, HLT).
+- **2 bytes:** opcode + 8-bit data or port (MVI, ANI, ORI, XRI, IN, OUT).
+- **3 bytes:** opcode + 16-bit address, low byte first (LDA, STA, JMP, JM, JZ, JNZ, CALL).
+
+Every instruction starts with the same fetch cycle (T1-T3: address, increment, memory). The extra bytes of 2- and 3-byte instructions need more memory read cycles, so execution time varies, unlike SAP-1's fixed 6 T-states.
+
 ### SAP-1 vs SAP-2
 
 | Feature            | SAP-1                        | SAP-2                                        |
