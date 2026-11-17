@@ -419,16 +419,16 @@ Flags are tested by conditional jumps such as JZ, JNZ, JC, JNC, JP, JM, JPE, JPO
 | Feature           | RISC                                   | CISC                                     |
 | ----------------- | -------------------------------------- | ---------------------------------------- |
 | Full form         | Reduced Instruction Set Computer       | Complex Instruction Set Computer         |
-| Instruction set   | Small, simple                          | Large, complex                           |
-| Instruction size  | Fixed length                           | Variable length                          |
-| Execution         | Mostly one clock cycle per instruction | Multiple cycles per instruction          |
 | Addressing modes  | Few                                    | Many                                     |
-| Memory access     | Only LOAD/STORE touch memory           | Many instructions access memory directly |
-| Registers         | Many (large register file)             | Fewer                                    |
-| Control unit      | Hardwired                              | Usually microprogrammed                  |
-| Pipelining        | Easy and highly efficient              | Difficult                                |
-| Code size         | Larger programs                        | Smaller programs                         |
 | Complexity burden | On the compiler                        | On the hardware                          |
+| Execution         | Mostly one clock cycle per instruction | Multiple cycles per instruction          |
+| Control unit      | Hardwired                              | Usually microprogrammed                  |
+| Registers         | Many (large register file)             | Fewer                                    |
+| Instruction set   | Small, simple                          | Large, complex                           |
+| Memory access     | Only LOAD/STORE touch memory           | Many instructions access memory directly |
+| Pipelining        | Easy and highly efficient              | Difficult                                |
+| Instruction size  | Fixed length                           | Variable length                          |
+| Code size         | Larger programs                        | Smaller programs                         |
 | Examples          | ARM, MIPS, SPARC                       | Intel x86, VAX                           |
 
 ---
