@@ -279,7 +279,7 @@ So the assumption is false. **√2 is irrational.** ∎
 
 ### Definition
 
-A graph `G = (V, E)` consists of a non-empty set V of **vertices (nodes)** and a set E of **edges**, each connecting two vertices.
+A graph `G = (V, E)` is a mathematical structure that consists of a non-empty set V of **vertices (nodes)** and a set E of **edges**, each connecting two vertices.
 
 ### Types of graphs
 
